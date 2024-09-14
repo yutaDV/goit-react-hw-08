@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactForm from './components/ContactForm/ContactForm';
-import { fetchContacts, addContact, deleteContact } from './redux/contactsOps';
-import { selectFilteredContacts } from './redux/contactsSlice';
-import { selectNameFilter } from './redux/filtersSlice';
+import { fetchContacts, addContact, deleteContact } from './redux/contacts/operations';
+import { selectFilteredContacts } from './redux/contacts/slice';
+import { selectNameFilter } from './redux/filters/slice';
 
 function App() {
   const dispatch = useDispatch();

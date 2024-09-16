@@ -1,31 +1,31 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // Локальне сховище
-import contactsReducer from './contacts/slice';
-import filtersReducer from './filters/slice';
-import authReducer from './auth/slice';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; //  стан у localStorage
+import authReducer from './auth/slice'; // Твій authSlice
+import contactsReducer from './contacts/slice'; // Слайс контактів
+import filtersReducer from './filters/slice'; // Слайс фільтрів
 
-// Налаштування для персистентного збереження токена
+// Налаштування для збереження токена
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'], // Зберігаємо тільки токен
+  whitelist: ['token'], // Тільки поле token буде збережено в localStorage
 };
 
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+
+// Конфігурація стора
 export const store = configureStore({
   reducer: {
+    auth: persistedAuthReducer, // слайс auth підтримує персистенцію токена
     contacts: contactsReducer,
     filters: filtersReducer,
-    auth: persistReducer(authPersistConfig, authReducer), // Персистентний authReducer
   },
-  middleware: getDefaultMiddleware => 
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false, // Щоб уникнути помилок серіалізації
     }),
 });
 
-// Створення persistor для ініціалізації персистенції
+// Створюємо persistor
 export const persistor = persistStore(store);
-

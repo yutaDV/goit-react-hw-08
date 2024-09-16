@@ -1,19 +1,20 @@
+import './index.css';
+import App from './App.jsx';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react'; // Імпортуємо PersistGate
-import { store, persistor } from './redux/store'; 
-import App from './App.jsx';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import { persistor, store } from './redux/store.js';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const rootElement = document.getElementById('root');
-const root = ReactDOM.createRoot(rootElement);
-
-root.render(
-  <Provider store={store}>
-    {/* PersistGate використовується для очікування відновлення стану */}
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
-

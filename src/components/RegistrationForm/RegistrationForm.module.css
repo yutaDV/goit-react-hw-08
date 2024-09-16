@@ -1,0 +1,41 @@
+.form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 20px 12px;
+    align-items: center;
+}
+
+.formBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    width: 100px;
+    border-radius: 4px;
+    background-color: inherit;
+    transition: color 200ms ease-in-out;
+}
+
+.formBtn:hover {
+    color: rgb(0, 106, 255);
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.input:focus {
+    outline: 1px solid rgb(0, 106, 255);
+}
+
+.errorMessage {
+    color: red;
+    text-align: center;
+}

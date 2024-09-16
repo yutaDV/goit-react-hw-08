@@ -1,0 +1,15 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom: 2px solid black;
+    padding-bottom: 8px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 0 40px;
+    border-bottom: 2px solid black;
+    padding-bottom: 8px;
+}

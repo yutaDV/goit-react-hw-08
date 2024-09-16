@@ -1,5 +1,5 @@
-
-export const selectUser = state => state.auth.user; // Отримати користувача
-export const selectIsLoggedIn = state => state.auth.isLoggedIn; // Перевірити, чи користувач залогінений
-export const selectToken = state => state.auth.token; // Отримати токен
-export const selectIsRefreshing = state => state.auth.isRefreshing; // Перевірити, чи відбувається оновлення користувача
+export const selectAuthUser = state => state.auth.user;
+export const selectAuthToken = state => state.auth.token;
+export const selectAuthIsLoggedIn = state => state.auth.isLoggedIn;
+export const selectAuthIsRefreshing = state => state.auth.isRefreshing;
+export const selectAuthError = state => state.auth.error;

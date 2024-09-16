@@ -1,43 +1,67 @@
-
-import './App.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ContactList from './components/ContactList/ContactList';
-import SearchBox from './components/SearchBox/SearchBox';
-import ContactForm from './components/ContactForm/ContactForm';
-import { fetchContacts, addContact, deleteContact } from './redux/contacts/operations';
-import { selectFilteredContacts } from './redux/contacts/slice';
-import { selectNameFilter } from './redux/filters/slice';
 
-function App() {
+import Layout from './components/Layout/Layout';
+import Loader from './components/Loader/Loader';
+import { selectAuthIsRefreshing } from './redux/auth/selectors';
+import { refreshUser } from './redux/auth/operations';
+import { Toaster } from 'react-hot-toast';
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Suspense } from 'react';
+import PrivateRoute from './components/Routes/PrivateRoute';
+import RestrictedRoute from './components/Routes/RestrictedRoute';
+
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const LoginPage = lazy(() => import('./pages/LoginePage/LoginPage'));
+const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'));
+const RegistrationPage = lazy(() =>
+  import('./pages/RegistrationPage/RegistrationPage')
+);
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+
+const App = () => {
+  const isRefreshing = useSelector(selectAuthIsRefreshing);
   const dispatch = useDispatch();
-  const contacts = useSelector(selectFilteredContacts);
-  const searchQuery = useSelector(selectNameFilter);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  const handleSearchChange = (query) => {
-    dispatch({ type: 'filters/setFilter', payload: query });
-  };
-
-  const handleDeleteContact = (id) => {
-    dispatch(deleteContact(id));
-  };
-
-  const handleAddContact = (newContact) => {
-    dispatch(addContact(newContact));
-  };
-
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm onAddContact={handleAddContact} />
-      <SearchBox value={searchQuery} onChange={handleSearchChange} />
-      <ContactList contacts={contacts} onDeleteContact={handleDeleteContact} />
-    </div>
+    <>
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <>
+          <Layout>
+            <main>
+              <Suspense fallback={<Loader />}>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route
+                    path="/contacts"
+                    element={<PrivateRoute component={<ContactsPage />} />}
+                  />
+                  <Route
+                    path="/login"
+                    element={<RestrictedRoute component={<LoginPage />} />}
+                  />
+                  <Route
+                    path="/register"
+                    element={
+                      <RestrictedRoute component={<RegistrationPage />} />
+                    }
+                  />
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </Suspense>
+            </main>
+          </Layout>
+        </>
+      )}
+      <Toaster />
+    </>
   );
-}
-
+};
 export default App;

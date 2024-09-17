@@ -1,0 +1,29 @@
+.pageContainer {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.phoneIcon {
+    font-size: 2rem;
+    color: #4CAF50;
+}
+
+.title {
+    font-size: 2rem;
+    color: #4CAF50;
+
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+}

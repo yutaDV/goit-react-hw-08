@@ -1,14 +1,28 @@
-.searchBoxContainer{
+.searchBoxContainer {
     display: flex;
     flex-direction: column;
     max-width: 320px;
     gap: 4px;
     margin-bottom: 24px;
 }
-.searchBox{
+
+.searchLabel {
+    font-size: 1rem;
+    color: #4CAF50;
+    /* Зеленуватий колір для тексту */
+}
+
+.searchBox {
     border-radius: 4px;
-    border: 2px solid black;
-    background-color: aliceblue;
-    color: rgb(80, 80, 81);
-    padding: 4px;
+    border: 2px solid #4CAF50;
+    background-color: #e8f5e9;
+    /* Світлий зелений фон */
+    color: #388E3C;
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.searchBox::placeholder {
+    color: #8e8e8e;
+    /* Колір тексту placeholder */
 }

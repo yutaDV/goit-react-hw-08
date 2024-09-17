@@ -1,16 +1,11 @@
-import { MagnifyingGlass } from 'react-loader-spinner';
+
+import styles from './Loader.module.css';
 
 const Loader = () => {
   return (
-    <MagnifyingGlass
-      visible={true}
-      height="100"
-      width="100"
-      ariaLabel="magnifying-glass-loading"
-      wrapperClass="magnifying-glass-wrapper"
-      glassColor="#c0efff"
-      color="green"
-    />
+    <div className={styles.loaderWrapper}>
+      <div className={styles.spinner}></div>
+    </div>
   );
 };
 

@@ -1,19 +1,49 @@
 .contact {
-    border: 2px solid black;
+    border: 2px solid #4CAF50;
     border-radius: 4px;
     padding: 16px;
     display: flex;
     gap: 16px;
     align-items: center;
+    background-color: #e8f5e9;
+    /* Світлий зелений фон */
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .nameContact,
 .numberContact {
     margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 8px;
+    color: #388E3C;
 }
 
 .buttonContainer {
     margin-left: auto;
     display: flex;
     align-items: center;
+}
+
+.button {
+    background-color: #4CAF50;
+    /* Зеленуватий колір кнопки */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #388E3C;
 }

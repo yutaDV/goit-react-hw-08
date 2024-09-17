@@ -7,6 +7,8 @@ import ContactForm from '../../components/ContactForm/ContactForm';
 import { fetchContacts, addContact, deleteContact } from '../../redux/contacts/operations';
 import { selectFilteredContacts } from '../../redux/contacts/selectors';
 import { selectFilter } from '../../redux/filters/selectors';
+import PhoneIcon from '@mui/icons-material/Phone';
+import css from './ContactsPage.module.css';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -30,8 +32,11 @@ const ContactsPage = () => {
   };
 
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <div className={css.pageContainer}>
+      <header className={css.header}>
+        <PhoneIcon className={css.phoneIcon} />
+        <h1 className={css.title}>Phonebook</h1>
+      </header>
       <ContactForm onAddContact={handleAddContact} />
       <SearchBox value={searchQuery} onChange={handleSearchChange} />
       <ContactList contacts={contacts} onDeleteContact={handleDeleteContact} />

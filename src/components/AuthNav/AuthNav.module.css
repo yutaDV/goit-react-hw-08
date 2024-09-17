@@ -1,0 +1,25 @@
+.linksContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.link {
+    color: #2c3e50;
+    font-size: larger;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.active {
+    color: #27ae60;
+    background-color: #d5f5e3;
+    text-decoration: underline;
+}
+
+.link:hover {
+    color: #2ecc71;
+    background-color: #d5f5e3;
+}

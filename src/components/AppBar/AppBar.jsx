@@ -4,7 +4,7 @@ import { selectAuthIsLoggedIn } from '../../redux/auth/selectors';
 
 import AuthNav from '../AuthNav/AuthNav';
 import Navigation from '../Navigation/Navigation';
-import UserMenu from '../Menu/Menu';
+import Menu from '../Menu/Menu';
 import clsx from 'clsx';
 
 const AppBar = () => {
@@ -12,7 +12,7 @@ const AppBar = () => {
   return (
     <nav className={clsx(isLoggedIn ? css.container : css.nav)}>
       <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      {isLoggedIn ? <Menu /> : <AuthNav />}
     </nav>
   );
 };

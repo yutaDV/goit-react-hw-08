@@ -1,33 +1,33 @@
-// src/components/Navigation.jsx
+import css from './Navigation.module.css';
+import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { selectAuthIsLoggedIn } from '../../redux/auth/selectors';
 
-function Navigation() {
+const Navigation = () => {
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/register">
-            Register
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/contacts">
-            Contacts
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+    <>
+      <NavLink
+        to="/"
+        className={({ isActive }) => {
+          return clsx(css.link, isActive && css.active);
+        }}
+      >
+        Home
+      </NavLink>
+      {isLoggedIn && (
+        <NavLink
+          to="/contacts"
+          className={({ isActive }) => {
+            return clsx(css.link, isActive && css.active);
+          }}
+        >
+          Contacts
+        </NavLink>
+      )}
+    </>
   );
-}
+};
 
 export default Navigation;

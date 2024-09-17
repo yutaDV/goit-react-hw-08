@@ -5,13 +5,13 @@ import ContactList from '../../components/ContactList/ContactList';
 import SearchBox from '../../components/SearchBox/SearchBox';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import { fetchContacts, addContact, deleteContact } from '../../redux/contacts/operations';
-import { selectFilteredContacts } from '../../redux/contacts/slice';
-import { selectNameFilter } from '../../redux/filters/slice';
+import { selectFilteredContacts } from '../../redux/contacts/selectors';
+import { selectFilter } from '../../redux/filters/selectors';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectFilteredContacts);
-  const searchQuery = useSelector(selectNameFilter);
+  const searchQuery = useSelector(selectFilter);
 
   useEffect(() => {
     dispatch(fetchContacts());

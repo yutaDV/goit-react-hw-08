@@ -1,0 +1,21 @@
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    color: #2c3e50;
+    font-size: larger;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.active {
+    color: #27ae60;
+    text-decoration: underline;
+}
+
+.link:hover {
+    color: #2ecc71;
+    text-decoration: underline;
+}

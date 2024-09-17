@@ -30,12 +30,13 @@ const LoginForm = () => {
       });
     actions.resetForm({ values: { ...values, password: '' } });
   };
+
   const emailId = nanoid();
   const passwordId = nanoid();
 
   const LoginValidationSchema = Yup.object().shape({
     email: Yup.string()
-      .email('Email must be valid ')
+      .email('Email must be valid')
       .required('Email is required')
       .min(3, 'Too Short!')
       .max(50, 'Too Long!'),
@@ -44,6 +45,7 @@ const LoginForm = () => {
       .min(8, 'Password is too short')
       .max(50, 'Password is too long'),
   });
+
   return (
     <Formik
       initialValues={{
